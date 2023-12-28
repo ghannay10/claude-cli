@@ -1,5 +1,5 @@
 use colored::*;
-use dialoguer::{theme::ColorfulTheme, Input, Select};
+use dialoguer::{theme::ColorfulTheme, Input};
 use reqwest::Client;
 use serde_json::{json, Value};
 use std::env;
@@ -33,33 +33,27 @@ async fn async_main() {
 
 async fn run_client(client: &Client) {
     loop {
-        let options = ["Chat", "Exit"];
-
-        let selection = Select::with_theme(&ColorfulTheme::default())
-            .with_prompt("What would you like Claude to do?")
-            .items(&options)
-            .default(0)
-            .interact()
-            .unwrap();
-
-        match selection {
-            0 => chat(&client).await,
-            1 => break,
-            _ => println!("Invalid option"),
-        }
+        chat(&client).await
     }
 }
 
 async fn chat(client: &Client) {
     let mut conversation_history = vec![];
+    let mut args: Vec<String> = env::args().collect();
     loop {
-        let input: String = Input::with_theme(&ColorfulTheme::default())
-            .with_prompt("You")
-            .interact_text()
-            .unwrap();
+        let input: String;
+        if args.len() < 2 {
+            input = Input::with_theme(&ColorfulTheme::default())
+                .with_prompt("Your query:")
+                .interact_text()
+                .unwrap();
+        } else {
+            input = args[1..].join(" ");
+            args = vec![]; // clear args
+        }
 
         if input == "exit" {
-            break;
+            std::process::exit(0);
         }
 
         conversation_history.push(json!({"role": "user", "content": input}));
