@@ -1,0 +1,19 @@
+[package]
+name = "claude_cli"
+version = "0.1.0"
+edition = "2021"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+colored = "2.1.0"
+ctrlc = "3.4.2"
+dialoguer = "0.11.0"
+futures = "0.3.30"
+hyper = "1.1.0"
+reqwest = { version = "0.11", features = ["json", "stream"] }
+rustyline = "13.0.0"
+serde = "1.0.193"
+serde_derive = "1.0.193"
+serde_json = "1.0.108"
+tokio = { version = "1.35.1", features = ["full"] }
