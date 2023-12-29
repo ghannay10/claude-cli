@@ -1,13 +1,19 @@
 [package]
 name = "claude_cli"
 version = "0.1.0"
+authors = ["Guy Hannay <guyhannay@hotmail.co.uk>"]
+description = "Rust CLI to interact with Anthropic's Language model (Claude) in the terminal"
+documentation = "https://docs.rs/claude-cli"
 edition = "2021"
+license = "MIT OR Apache-2.0"
+repository = "https://github.com/ghannay10/claude-cli"
+keywords = ["cli", "anthropoc", "llm", "chatgpt"]
+rust-version = "1.74.0"
+readme = "README.md"
 
 [[bin]]
 name = "claude"
 path = "src/main.rs"
-
-# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
 colored = "2.1.0"
