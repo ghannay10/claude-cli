@@ -6,6 +6,7 @@ Claude CLI is a command-line interface tool written in Rust that allows you to i
 ## Features
 - Interaction with the Claude.
 - Support for multi-turn conversations.
+- Accepts code inputs
 
 ## Prerequisites
 Before using Claude CLI, make sure you have the following prerequisites:
