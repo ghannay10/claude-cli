@@ -146,3 +146,45 @@ pub async fn chat(client: &Client) {
         conversation_history.push(json!({"role": "assistant", "content": full_text}));
     }
 }
+
+#[tokio::test]
+async fn test_get_api_key() {
+    env::set_var("CLAUDE_API_KEY", "mock_api_key");
+    assert_eq!(get_api_key(), "mock_api_key");
+}
+
+#[test]
+fn test_handle_user_input() {
+    let input = vec!["test".to_string()];
+    assert_eq!(handle_user_input(input), "test");
+
+    let input = vec![];
+    assert_eq!(handle_user_input(input), "");
+
+    let input = vec!["test".to_string(), "input".to_string()];
+    assert_eq!(handle_user_input(input), "test input");
+}
+
+#[tokio::test]
+pub async fn test_get_response() {
+    // Request a new server from the pool
+    let mut server = mockito::Server::new();
+
+    // Use one of these addresses to configure your client
+    let _m = server
+        .mock("POST", "v1/messages")
+        .match_header("anthropic-version", "2023-06-01")
+        .match_header("anthropic-beta", "messages-2023-12-15")
+        .match_header("Content-Type", "application/json")
+        .match_header("x-api-key", "mock_api_key")
+        .with_status(200)
+        .with_header("content-type", "application/json")
+        .with_body(r#"{"status": "success"}"#)
+        .create();
+
+    let client = Client::new();
+    env::set_var("CLAUDE_API_KEY", "mock_api_key");
+    let conversation = vec![json!({"role": "user", "content": "test"})];
+    let response = get_response(&client, &conversation).await;
+    assert_eq!(response.status(), 200);
+}
