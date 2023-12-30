@@ -3,6 +3,8 @@
 ## Overview
 Claude CLI is a command-line interface tool written in Rust that allows you to interact with Anthropic's language model (Claude) directly in your terminal.
 
+![example](./example.gif)
+
 ## Features
 - Interaction with the Claude.
 - Support for multi-turn conversations.
