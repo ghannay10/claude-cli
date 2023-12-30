@@ -18,12 +18,12 @@ Before using Claude CLI, make sure you have the following prerequisites:
 To use Claude CLI, clone the repository and build the project using the following command:
 
 ```bash
-cargo install claude-cli
+cargo install claude_cli
 ```
 
 ## Usage
-- To launch with a query: `claude <query here>`
-- If no query is given, than you are prompted.
+- To launch run: `claude` 
+- For an instant query, run with a prompt wrapped quotation marks : `claude '<query here>'`
 - **Multi-line support** - To enter multiple lines to a question wrap your query in three quotation marks ('''). Example:
 ```bash
 claude '''turn this into a python function: 

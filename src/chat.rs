@@ -45,7 +45,7 @@ fn handle_user_input(args: Vec<String>) -> String {
             input = first_line;
         }
     } else {
-        input = args[1..].join(" ");
+        input = args[1].clone();
     }
 
     input
