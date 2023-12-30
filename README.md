@@ -18,7 +18,7 @@ Before using Claude CLI, make sure you have the following prerequisites:
 To use Claude CLI, clone the repository and build the project using the following command:
 
 ```bash
-cargo install claude_cli
+cargo install claude-cli
 ```
 
 ## Usage

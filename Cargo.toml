@@ -1,5 +1,5 @@
 [package]
-name = "claude-cli"
+name = "claude_cli"
 version = "0.1.1"
 authors = ["Guy Hannay <guyhannay@hotmail.co.uk>"]
 description = "Rust CLI to interact with Anthropic's Language model (Claude) in the terminal"
